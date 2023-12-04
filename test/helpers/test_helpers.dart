@@ -3,6 +3,8 @@ import 'package:mockito/mockito.dart';
 import 'package:stackedtest/app/app.locator.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stackedtest/services/api_service.dart';
+import 'package:stackedtest/services/sql_service.dart';
+import 'package:stackedtest/services/database_service.dart';
 // @stacked-import
 
 import 'test_helpers.mocks.dart';
@@ -12,6 +14,8 @@ import 'test_helpers.mocks.dart';
   MockSpec<BottomSheetService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<DialogService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<ApiService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<SqlService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<DatabaseService>(onMissingStub: OnMissingStub.returnDefault),
 // @stacked-mock-spec
 ])
 void registerServices() {
@@ -19,6 +23,8 @@ void registerServices() {
   getAndRegisterBottomSheetService();
   getAndRegisterDialogService();
   getAndRegisterApiService();
+  getAndRegisterSqlService();
+  getAndRegisterDatabaseService();
 // @stacked-mock-register
 }
 
@@ -76,6 +82,20 @@ MockApiService getAndRegisterApiService() {
   _removeRegistrationIfExists<ApiService>();
   final service = MockApiService();
   locator.registerSingleton<ApiService>(service);
+  return service;
+}
+
+MockSqlService getAndRegisterSqlService() {
+  _removeRegistrationIfExists<SqlService>();
+  final service = MockSqlService();
+  locator.registerSingleton<SqlService>(service);
+  return service;
+}
+
+MockDatabaseService getAndRegisterDatabaseService() {
+  _removeRegistrationIfExists<DatabaseService>();
+  final service = MockDatabaseService();
+  locator.registerSingleton<DatabaseService>(service);
   return service;
 }
 // @stacked-mock-create

@@ -9,9 +9,12 @@ import 'dart:ui' as _i6;
 import 'package:flutter/material.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i3;
+import 'package:sqflite/sqflite.dart' as _i11;
 import 'package:stacked_services/stacked_services.dart' as _i2;
 import 'package:stackedtest/models/book.dart' as _i8;
 import 'package:stackedtest/services/api_service.dart' as _i7;
+import 'package:stackedtest/services/database_service.dart' as _i10;
+import 'package:stackedtest/services/sql_service.dart' as _i9;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -685,4 +688,62 @@ class MockApiService extends _i1.Mock implements _i7.ApiService {
         returnValueForMissingStub:
             _i5.Future<List<_i8.Book>>.value(<_i8.Book>[]),
       ) as _i5.Future<List<_i8.Book>>);
+}
+
+/// A class which mocks [SqlService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockSqlService extends _i1.Mock implements _i9.SqlService {
+  @override
+  _i5.Future<void> testHive() => (super.noSuchMethod(
+        Invocation.method(
+          #testHive,
+          [],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+}
+
+/// A class which mocks [DatabaseService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockDatabaseService extends _i1.Mock implements _i10.DatabaseService {
+  @override
+  _i5.Future<_i11.Database?> get database => (super.noSuchMethod(
+        Invocation.getter(#database),
+        returnValue: _i5.Future<_i11.Database?>.value(),
+        returnValueForMissingStub: _i5.Future<_i11.Database?>.value(),
+      ) as _i5.Future<_i11.Database?>);
+
+  @override
+  _i5.Future<String> get fullPath => (super.noSuchMethod(
+        Invocation.getter(#fullPath),
+        returnValue: _i5.Future<String>.value(_i3.dummyValue<String>(
+          this,
+          Invocation.getter(#fullPath),
+        )),
+        returnValueForMissingStub:
+            _i5.Future<String>.value(_i3.dummyValue<String>(
+          this,
+          Invocation.getter(#fullPath),
+        )),
+      ) as _i5.Future<String>);
+
+  @override
+  _i5.Future<void> create(
+    _i11.Database? database,
+    int? version,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #create,
+          [
+            database,
+            version,
+          ],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
 }

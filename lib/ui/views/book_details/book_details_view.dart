@@ -6,7 +6,7 @@ import 'book_details_viewmodel.dart';
 
 class BookDetailsView extends StackedView<BookDetailsViewModel> {
   final Book? book;
-  const BookDetailsView({Key? key, required this.book}) : super(key: key);
+  const BookDetailsView({super.key, required this.book});
 
   @override
   Widget builder(

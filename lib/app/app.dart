@@ -6,7 +6,9 @@ import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stackedtest/services/api_service.dart';
 import 'package:stackedtest/ui/views/book_details/book_details_view.dart';
-import 'package:stackedtest/ui/views/map/map_view.dart';
+import 'package:homescreen/map_view.dart';
+import 'package:stackedtest/services/sql_service.dart';
+import 'package:stackedtest/services/database_service.dart';
 // @stacked-import
 
 @StackedApp(
@@ -22,6 +24,8 @@ import 'package:stackedtest/ui/views/map/map_view.dart';
     LazySingleton(classType: DialogService),
     LazySingleton(classType: NavigationService),
     LazySingleton(classType: ApiService),
+    LazySingleton(classType: SqlService),
+    LazySingleton(classType: DatabaseService),
 // @stacked-service
   ],
   bottomsheets: [

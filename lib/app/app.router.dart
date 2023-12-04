@@ -7,13 +7,13 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:flutter/material.dart' as _i6;
 import 'package:flutter/material.dart';
+import 'package:homescreen/map_view.dart' as _i5;
 import 'package:stacked/stacked.dart' as _i1;
 import 'package:stacked_services/stacked_services.dart' as _i8;
 import 'package:stackedtest/models/book.dart' as _i7;
 import 'package:stackedtest/ui/views/book_details/book_details_view.dart'
     as _i4;
 import 'package:stackedtest/ui/views/home/home_view.dart' as _i2;
-import 'package:stackedtest/ui/views/map/map_view.dart' as _i5;
 import 'package:stackedtest/ui/views/startup/startup_view.dart' as _i3;
 
 class Routes {
@@ -75,8 +75,9 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i5.MapView: (data) {
+      final args = data.getArgs<MapViewArguments>(nullOk: false);
       return _i6.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i5.MapView(),
+        builder: (context) => _i5.MapView(key: args.key, data: args.data),
         settings: data,
       );
     },
@@ -113,6 +114,33 @@ class BookDetailsViewArguments {
   @override
   int get hashCode {
     return key.hashCode ^ book.hashCode;
+  }
+}
+
+class MapViewArguments {
+  const MapViewArguments({
+    this.key,
+    required this.data,
+  });
+
+  final _i6.Key? key;
+
+  final String data;
+
+  @override
+  String toString() {
+    return '{"key": "$key", "data": "$data"}';
+  }
+
+  @override
+  bool operator ==(covariant MapViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key && other.data == data;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode ^ data.hashCode;
   }
 }
 
@@ -162,14 +190,17 @@ extension NavigatorStateExtension on _i8.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> navigateToMapView([
+  Future<dynamic> navigateToMapView({
+    _i6.Key? key,
+    required String data,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return navigateTo<dynamic>(Routes.mapView,
+        arguments: MapViewArguments(key: key, data: data),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -221,14 +252,17 @@ extension NavigatorStateExtension on _i8.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> replaceWithMapView([
+  Future<dynamic> replaceWithMapView({
+    _i6.Key? key,
+    required String data,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return replaceWith<dynamic>(Routes.mapView,
+        arguments: MapViewArguments(key: key, data: data),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
